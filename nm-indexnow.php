@@ -257,11 +257,6 @@ function nm_indexnow_submit_urls( array $urls ) {
 		return;
 	}
 
-	$host = parse_url( home_url(), PHP_URL_HOST );
-	if ( ! $host ) {
-		return;
-	}
-
 	$urls = array_values( array_unique( array_filter( $urls ) ) );
 	if ( empty( $urls ) ) {
 		return;
@@ -572,7 +567,7 @@ function nm_indexnow_key_location_field_cb() {
  * @return bool True if the site URL points to localhost, false otherwise.
  */
 function nm_indexnow_is_localhost() {
-	$host = parse_url( home_url(), PHP_URL_HOST );
+	$host = wp_parse_url( home_url(), PHP_URL_HOST );
 	if ( ! $host ) {
 		return false;
 	}
